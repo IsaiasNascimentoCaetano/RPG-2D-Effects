@@ -38,8 +38,8 @@ inline void setTiple(hgeTriple *tri,float vx0,float vy0,float vx1,float vy1,floa
     }
 }
 
-//¸ù¾İÀäÈ´½ø¶È°Ù·Ö±ÈºÍËù¸²¸ÇµÄ°´Å¥µÄËÄÔªÊı£¬Í¨¹ıÈı½ÇÃæµÄ·½Ê½»æÖÆÀäÈ´ÕÚÕÖ
-//´ËÖÖ·½Ê½µÄÎÊÌâÔÚÓÚÖ»ÄÜÓÃÓÚÕı·½ĞÎ°´Å¥¡£
+//æ ¹æ®å†·å´è¿›åº¦ç™¾åˆ†æ¯”å’Œæ‰€è¦†ç›–çš„æŒ‰é’®çš„å››å…ƒæ•°ï¼Œé€šè¿‡ä¸‰è§’é¢çš„æ–¹å¼ç»˜åˆ¶å†·å´é®ç½©
+//æ­¤ç§æ–¹å¼çš„é—®é¢˜åœ¨äºåªèƒ½ç”¨äºæ­£æ–¹å½¢æŒ‰é’®ã€‚
 void RenderCoolDownEffect(hgeQuad *btnQuad,float percent)
 {
 
@@ -48,8 +48,8 @@ void RenderCoolDownEffect(hgeQuad *btnQuad,float percent)
     float triH=((*btnQuad).v[2].y-(*btnQuad).v[0].y)/2;
     float triW=((*btnQuad).v[2].x-(*btnQuad).v[0].x)/2;
     //  _ _
-    // |\|/|   ×ó±ßÊÇÕÚÕÖ²ãÈı½ÇÃæ·Ö¸îºóµÄÑù×Ó
-    // |/|\|   ¿ÉÏ§ÓĞÏÂ»®ÏßÃ»ÓĞÉÏºáÏß£¬ÎÒÖªµÀ²éÏÂASCII±í¾ÍÓĞµ«ÎÒÀÁµÃ²é£¬U MAD£¿
+    // |\|/|   å·¦è¾¹æ˜¯é®ç½©å±‚ä¸‰è§’é¢åˆ†å‰²åçš„æ ·å­
+    // |/|\|   å¯æƒœæœ‰ä¸‹åˆ’çº¿æ²¡æœ‰ä¸Šæ¨ªçº¿ï¼Œæˆ‘çŸ¥é“æŸ¥ä¸‹ASCIIè¡¨å°±æœ‰ä½†æˆ‘æ‡’å¾—æŸ¥ï¼ŒU MADï¼Ÿ
     //  - -
     setTiple(&upR,midX,midY,(*btnQuad).v[1].x,(*btnQuad).v[1].y,midX,(*btnQuad).v[1].y,0x7f7f0000);
     setTiple(&upL,midX,midY,midX,(*btnQuad).v[0].y,(*btnQuad).v[0].x,(*btnQuad).v[0].y,0x7f007f00);
@@ -58,7 +58,7 @@ void RenderCoolDownEffect(hgeQuad *btnQuad,float percent)
     setTiple(&triLeft,midX,midY,(*btnQuad).v[0].x,(*btnQuad).v[0].y,(*btnQuad).v[3].x,(*btnQuad).v[3].y,0x7f7f007f);
     setTiple(&triRight,midX,midY,(*btnQuad).v[2].x,(*btnQuad).v[2].y,(*btnQuad).v[1].x,(*btnQuad).v[1].y,0x7f007f7f);
 
-    //ÉèÖÃÈı½ÇÃæµÄÑÕÉ«ºÍ»ìºÏ·½Ê½
+    //è®¾ç½®ä¸‰è§’é¢çš„é¢œè‰²å’Œæ··åˆæ–¹å¼
 
     upR.blend=BLEND_ALPHAADD|BLEND_NOZWRITE;
     downR.blend=BLEND_ALPHAADD|BLEND_NOZWRITE;
@@ -66,15 +66,7 @@ void RenderCoolDownEffect(hgeQuad *btnQuad,float percent)
     downL.blend=BLEND_ALPHAADD|BLEND_NOZWRITE;
     triLeft.blend=BLEND_ALPHAADD|BLEND_NOZWRITE;
     triRight.blend=BLEND_ALPHAADD|BLEND_NOZWRITE;
-    /*
-        hge->Gfx_RenderQuad(btnQuad);
-        hge->Gfx_RenderTriple(&upR);
-        hge->Gfx_RenderTriple(&upL);
-        hge->Gfx_RenderTriple(&downR);
-        hge->Gfx_RenderTriple(&downL);
-        hge->Gfx_RenderTriple(&triLeft);
-        hge->Gfx_RenderTriple(&triRight);
-    */
+    
 
     if(percent==0)
     {
@@ -248,7 +240,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// happened can be read with System_GetErrorMessage().
 	if(hge->System_Initiate())
 	{
-        //³õÊ¼»¯°´Å¥ºÍÕÚÕÖ
+        //åˆå§‹åŒ–æŒ‰é’®å’Œé®ç½©
         //btnSpr=new hgeSprite(hge->Texture_Load("btn.png"),0,0,64,64);
         //btnSpr->SetHotSpot(32,32);
         //btnSpr->SetColor(SETA(btnSpr->GetColor(),255));
@@ -283,7 +275,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         btnQuad.v[2].tx=1.0;btnQuad.v[2].ty=1.0;
         btnQuad.v[3].tx=0.0; btnQuad.v[3].ty=1.0;
 
-        //ÎŞÂÛÎÒ¸ø³öµÄ¶¥µãÊı¾İÊÇË³Ê±Õë»¹ÊÇÄæÊ±Õë£¬¶¼ÄÜ»­³öÈı½ÇĞÎÀ´
+        //æ— è®ºæˆ‘ç»™å‡ºçš„é¡¶ç‚¹æ•°æ®æ˜¯é¡ºæ—¶é’ˆè¿˜æ˜¯é€†æ—¶é’ˆï¼Œéƒ½èƒ½ç”»å‡ºä¸‰è§’å½¢æ¥
         //setTiple(&upL,300,300,300,290,310,300);
 		// Starts running FrameFunc().
 		// Note that the execution "stops" here
